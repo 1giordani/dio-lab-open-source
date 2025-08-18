@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Consulta de Férias</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="assets/css/styles.css" />
+  </head>
+  <body>
+    <header>
+      <div>
+        <span class="brand">
+          <a href="index.html">
+            <img src="https://hermes.digitalinnovation.one/assets/diome/logo-minimized.png" alt="DIO logo" />
+            <span><b>OPEN</b>.SOURCE</span>
+          </a>
+        </span>
+      </div>
+    </header>
+    <main>
+      <h1>Consulta de Férias 2025 e 2026</h1>
+      <form id="loginForm">
+        <label>
+          Usuário:
+          <input type="text" id="usuario" required />
+        </label>
+        <label>
+          Matrícula:
+          <input type="password" id="matricula" required />
+        </label>
+        <button type="submit">Entrar</button>
+      </form>
+      <p id="message"></p>
+      <section id="tabelaFerias"></section>
+    </main>
+    <script src="assets/js/ferias.js"></script>
+  </body>
+</html>
