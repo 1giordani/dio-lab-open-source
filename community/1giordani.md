@@ -31,6 +31,10 @@ Transformar meus estudos em projetos reais, desenvolver experiência prática e 
 
 [github.com/1giordani](https://github.com/1giordani)
 
+## 🤝 Contribuição Open Source
+
+Esta contribuição faz parte da minha jornada de aprendizado em Git e GitHub, praticando branches, commits e Pull Requests.
+
 ---
 
 *Perfil criado como contribuição ao projeto open source da DIO.*
