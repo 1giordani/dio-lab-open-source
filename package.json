@@ -1,0 +1,12 @@
+{
+  "name": "consulta-ferias-dio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Protótipo educacional de consulta de férias para entrega na DIO",
+  "scripts": {
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
