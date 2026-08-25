@@ -1,46 +1,65 @@
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('loginForm');
-  const usuarioInput = document.getElementById('usuario');
-  const matriculaInput = document.getElementById('matricula');
+  const userInput = document.getElementById('usuario');
+  const registrationInput = document.getElementById('matricula');
   const message = document.getElementById('message');
-  const tabelaSec = document.getElementById('tabelaFerias');
+  const result = document.getElementById('resultado');
+  const employeeName = document.getElementById('employeeName');
+  const rows = document.getElementById('vacationRows');
+  const newSearch = document.getElementById('newSearch');
 
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
+  const formatDate = (value) => new Intl.DateTimeFormat('pt-BR', { timeZone: 'UTC' }).format(new Date(`${value}T00:00:00Z`));
+  const countDays = (start, end) => Math.round((new Date(end) - new Date(start)) / 86400000) + 1;
+
+  function resetSearch() {
+    result.hidden = true;
+    form.hidden = false;
+    form.reset();
     message.textContent = '';
+    rows.replaceChildren();
+    userInput.focus();
+  }
 
-    const usuario = usuarioInput.value.trim().toLowerCase();
-    const matricula = matriculaInput.value.trim();
+  function renderVacation(record) {
+    rows.replaceChildren();
+    Object.entries(record.ferias).sort(([yearA], [yearB]) => yearA.localeCompare(yearB)).forEach(([year, period]) => {
+      const row = document.createElement('tr');
+      [year, formatDate(period.inicio), formatDate(period.fim), countDays(period.inicio, period.fim)].forEach((value) => {
+        const cell = document.createElement('td');
+        cell.textContent = value;
+        row.appendChild(cell);
+      });
+      rows.appendChild(row);
+    });
+    employeeName.textContent = `Colaborador: ${record.usuario}`;
+    form.hidden = true;
+    result.hidden = false;
+    result.focus();
+  }
 
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    message.textContent = 'Consultando…';
     try {
       const response = await fetch('assets/data/ferias.json');
-      const dados = await response.json();
-      const registro = dados.find((r) => r.usuario.toLowerCase() === usuario && r.matricula === matricula);
-
-      if (!registro) {
-        message.textContent = 'Usuário ou matrícula inválidos.';
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      const records = await response.json();
+      const user = userInput.value.trim().toLocaleLowerCase('pt-BR');
+      const registration = registrationInput.value.trim();
+      const record = records.find((item) =>
+        item.usuario.toLocaleLowerCase('pt-BR') === user && item.matricula === registration
+      );
+      if (!record) {
+        message.textContent = 'Usuário ou matrícula não encontrados. Confira os dados de demonstração.';
         return;
       }
-
-      form.style.display = 'none';
-      renderTable(registro.ferias);
-    } catch (err) {
-      console.error(err);
-      message.textContent = 'Erro ao carregar dados de férias.';
+      message.textContent = '';
+      renderVacation(record);
+    } catch (error) {
+      console.error(error);
+      message.textContent = 'Não foi possível carregar os dados. Tente novamente.';
     }
   });
 
-  function renderTable(ferias) {
-    const table = document.createElement('table');
-    table.innerHTML = '<thead><tr><th>Ano</th><th>Início</th><th>Fim</th></tr></thead>';
-    const tbody = document.createElement('tbody');
-    Object.keys(ferias).forEach((ano) => {
-      const { inicio, fim } = ferias[ano];
-      const tr = document.createElement('tr');
-      tr.innerHTML = `<td>${ano}</td><td>${inicio}</td><td>${fim}</td>`;
-      tbody.appendChild(tr);
-    });
-    table.appendChild(tbody);
-    tabelaSec.appendChild(table);
-  }
+  newSearch.addEventListener('click', resetSearch);
 });
