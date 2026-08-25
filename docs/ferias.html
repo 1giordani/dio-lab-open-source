@@ -1,38 +1,63 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Consulta de Férias</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="assets/css/styles.css" />
-  </head>
-  <body>
-    <header>
-      <div>
-        <span class="brand">
-          <a href="index.html">
-            <img src="https://hermes.digitalinnovation.one/assets/diome/logo-minimized.png" alt="DIO logo" />
-            <span><b>OPEN</b>.SOURCE</span>
-          </a>
-        </span>
-      </div>
-    </header>
-    <main>
-      <h1>Consulta de Férias 2025 e 2026</h1>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Protótipo educacional para consulta individual de férias.">
+  <title>Consulta de Férias | Projeto DIO</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="stylesheet" href="assets/css/ferias.css">
+</head>
+<body class="vacation-page">
+  <header class="vacation-header">
+    <a class="vacation-brand" href="index.html" aria-label="Voltar à página inicial">
+      <img src="https://hermes.digitalinnovation.one/assets/diome/logo-minimized.png" alt="">
+      <span><strong>DIO</strong> | Projeto de Férias</span>
+    </a>
+  </header>
+
+  <main class="vacation-main">
+    <section class="intro" aria-labelledby="page-title">
+      <p class="eyebrow">Projeto educacional</p>
+      <h1 id="page-title">Consulta de férias</h1>
+      <p>Informe os dados de demonstração para visualizar o calendário individual de 2025 e 2026.</p>
+    </section>
+
+    <section class="login-card" aria-labelledby="login-title">
+      <h2 id="login-title">Acessar consulta</h2>
       <form id="loginForm">
-        <label>
-          Usuário:
-          <input type="text" id="usuario" required />
-        </label>
-        <label>
-          Matrícula:
-          <input type="password" id="matricula" required />
-        </label>
-        <button type="submit">Entrar</button>
+        <label for="usuario">Usuário</label>
+        <input type="text" id="usuario" name="usuario" autocomplete="username" placeholder="Ex.: Joao" required>
+        <label for="matricula">Matrícula</label>
+        <input type="password" id="matricula" name="matricula" inputmode="numeric" autocomplete="current-password" placeholder="Ex.: 123" required>
+        <button type="submit">Consultar férias</button>
       </form>
-      <p id="message"></p>
-      <section id="tabelaFerias"></section>
-    </main>
-    <script src="assets/js/ferias.js"></script>
-  </body>
+      <p class="demo-note"><strong>Demonstração:</strong> use Joao / 123, Maria / 456 ou Pedro / 789. Todos os dados são fictícios.</p>
+      <p id="message" class="message" role="status" aria-live="polite"></p>
+    </section>
+
+    <section id="resultado" class="result-card" aria-labelledby="result-title" hidden>
+      <div class="result-heading">
+        <div>
+          <p class="eyebrow">Resultado</p>
+          <h2 id="result-title">Períodos programados</h2>
+          <p id="employeeName"></p>
+        </div>
+        <button id="newSearch" class="secondary-button" type="button">Nova consulta</button>
+      </div>
+      <div class="table-wrapper">
+        <table>
+          <caption class="sr-only">Períodos de férias por ano</caption>
+          <thead><tr><th scope="col">Ano</th><th scope="col">Início</th><th scope="col">Fim</th><th scope="col">Dias</th></tr></thead>
+          <tbody id="vacationRows"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer class="vacation-footer">
+    <p>Protótipo criado para fins educacionais no desafio da DIO. Não utilize dados pessoais reais.</p>
+  </footer>
+  <script src="assets/js/ferias.js"></script>
+</body>
 </html>
