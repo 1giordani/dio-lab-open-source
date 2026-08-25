@@ -1,0 +1,31 @@
+.vacation-page { min-height: 100vh; display: flex; flex-direction: column; background: linear-gradient(135deg, #eef7fc 0%, #f7f8fa 55%, #fff1f3 100%); }
+.vacation-header { background: #0f0f0f; padding: 1rem clamp(1rem, 5vw, 4rem); }
+.vacation-brand { display: inline-flex; align-items: center; gap: .75rem; color: #fafafa; }
+.vacation-brand img { height: 2rem; }
+.vacation-main { width: min(960px, calc(100% - 2rem)); margin: 0 auto; padding: 3rem 0; flex: 1; }
+.intro { text-align: center; max-width: 680px; margin: 0 auto 2rem; }
+.intro h1 { font-size: clamp(2rem, 6vw, 3.5rem); margin-bottom: .75rem; }
+.intro p:not(.eyebrow) { color: #59636e; line-height: 1.6; }
+.eyebrow { color: #237ca8; font-size: .78rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; margin-bottom: .5rem; }
+.login-card, .result-card { background: #fff; border: 1px solid #dee2e6; border-radius: 1rem; box-shadow: 0 1.25rem 3rem rgba(15,15,15,.09); padding: clamp(1.25rem, 4vw, 2rem); }
+.login-card { max-width: 520px; margin: auto; }
+.login-card h2 { margin-bottom: 1.25rem; }
+#loginForm { display: grid; gap: .6rem; }
+#loginForm label { font-weight: 700; margin-top: .5rem; }
+#loginForm input { width: 100%; border: 1px solid #aeb7c0; border-radius: .55rem; font: inherit; padding: .8rem .9rem; }
+#loginForm input:focus { border-color: #237ca8; box-shadow: 0 0 0 3px rgba(48,163,220,.2); outline: 0; }
+#loginForm button, .secondary-button { border: 0; border-radius: .55rem; cursor: pointer; font: inherit; font-weight: 700; padding: .8rem 1rem; }
+#loginForm button { background: #237ca8; color: #fff; margin-top: .9rem; }
+#loginForm button:hover { background: #195d7e; }
+.demo-note { background: #eef7fc; border-left: 4px solid #30a3dc; border-radius: .4rem; color: #36414b; font-size: .9rem; line-height: 1.5; margin-top: 1.25rem; padding: .8rem; }
+.message { color: #a12635; font-weight: 600; min-height: 1.5rem; margin-top: .75rem; }
+.result-heading { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; margin-bottom: 1.5rem; }
+.secondary-button { background: #e9edf1; color: #0f0f0f; }
+.table-wrapper { overflow-x: auto; }
+.result-card table { border-collapse: collapse; width: 100%; }
+.result-card th, .result-card td { border-bottom: 1px solid #dee2e6; padding: .9rem; text-align: left; }
+.result-card th { background: #eef7fc; }
+.vacation-footer { background: #e4e8ec; color: #4d5964; font-size: .85rem; padding: 1rem; text-align: center; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+[hidden] { display: none !important; }
+@media (max-width: 600px) { .vacation-main { padding: 2rem 0; } .result-heading { flex-direction: column; } .secondary-button { width: 100%; } }
